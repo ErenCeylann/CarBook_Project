@@ -1,0 +1,63 @@
+﻿@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Hakkımızda Alanı</h4>
+                        <p class="card-subtitle mb-4">
+                            Hakkkımızda alanınında bulunan bilgileri aşşağıdan düzenleyebilirsiniz.
+                        </p>
+
+                        <div class="table-responsive">
+                            @if (Model.Count > 0)
+                            {
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Başlık</th>
+                                            <th>Açıklama</th>
+                                            <th>Image Url</th>
+                                            <th>Güncelle</th>
+                                            <th>Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.ImageUrl</td>
+                                                <td><a href="/Admin/AdminAbout/UpdateAbout/@item.AboutId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><a href="/Admin/AdminAbout/RemoveAbout/@item.AboutId" class="btn btn-outline-danger">Sil</a></td>       
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <h4 class="alert-heading">Hakkımızda Bulunamadı!</h4>
+                                    <p>Şu anda hakkımızda bulunmamaktadır.Yeni Hakkımızda eklemek için aşşağıdan özellik girişi butonuna tıklayınız.</p>
+                                </div>
+                            }
+                            <a href="/Admin/AdminAbout/CreateAbout" class="btn btn-outline-info">Yeni Hakkımızda Girişi</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

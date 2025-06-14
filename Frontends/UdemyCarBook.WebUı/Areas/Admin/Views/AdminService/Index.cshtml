@@ -1,0 +1,68 @@
+﻿@model List<ResultServiceDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Hizmetler Alanı</h4>
+                        <p class="card-subtitle mb-4">
+                           Hizmetlerin yer aldığı sayfadır.Bu sayfa üzerinden Himzet eklenebilir,silinebilir, veya güncellenebilir.
+                        </p>
+
+                        <div class="table-responsive">
+                            @if (Model.Count > 0)
+                            {
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Hizmet Adı</th>
+                                            <th>Açıklama</th>
+                                            <th>İkon</th>
+                                            <th>Güncelle</th>
+                                            <th>Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.Icon</td>
+                                                <td><a href="/Admin/AdminService/UpdateService/@item.ServiceId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><a href="/Admin/AdminService/RemoveService/@item.ServiceId" class="btn btn-outline-danger">Sil</a></td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <h4 class="alert-heading">Hizmet Bulunamadı!</h4>
+                                    <p>Şu anda Hizmet bulunmamaktadır.Yeni Hizmet eklemek için aşşağıdan Hizmet girişi butonuna tıklayınız.</p>
+                                </div>
+                            }
+                            <a href="/Admin/AdminService/CreateService" class="btn btn-outline-info">Hizmet Girişi</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

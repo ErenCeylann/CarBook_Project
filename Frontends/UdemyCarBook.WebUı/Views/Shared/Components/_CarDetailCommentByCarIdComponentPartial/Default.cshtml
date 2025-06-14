@@ -1,0 +1,87 @@
+﻿@model List<ResultReviewByCarIdDto>
+<div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+	<div class="row">
+		<div class="col-md-7">
+			<h3 class="head">@ViewBag.totalComment Yorum</h3>
+			@foreach (var item in Model)
+			{
+				<div class="review d-flex">
+					<div class="user-img" style="background-image: url(@item.CustomerImage)"></div>
+					<div class="desc">
+						<h4>
+							<span class="text-left">@item.CustomerName</span>
+							<span class="text-right">@item.ReviewDate</span>
+						</h4>
+						<p class="star">
+							<span>
+								@for (int i = 1; i <=int.Parse(item.CustomerRaytingValue); i++)
+								{
+									<i class="ion-ios-star"></i>
+								}
+								
+								
+							</span>
+							<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+						</p>
+						<p>@item.CustomerComment</p>
+					</div>
+				</div>
+			}
+		</div>
+		<div class="col-md-5">
+			<div class="rating-wrap">
+				<h3 class="head">Değerlendirmeler</h3>
+				<div class="wrap">
+					<p class="star">
+						<span>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							(@ViewBag.fiveRating%)
+						</span>
+						<span>@ViewBag.fiveStar Yorum</span>
+					</p>
+					<p class="star">
+						<span>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+
+							(@ViewBag.fourRating%)
+						</span>
+						<span>@ViewBag.fourStar Yorum</span>
+					</p>
+					<p class="star">
+						<span>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+
+							(@ViewBag.threeRating%)
+						</span>
+						<span>@ViewBag.threeStar Yorum</span>
+					</p>
+					<p class="star">
+						<span>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+
+							(@ViewBag.twoRating%)
+						</span>
+						<span>@ViewBag.twoStar Yorum</span>
+					</p>
+					<p class="star">
+						<span>
+							<i class="ion-ios-star"></i>
+							(@ViewBag.oneRating%)
+						</span>
+						<span>@ViewBag.oneStar Yorum</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

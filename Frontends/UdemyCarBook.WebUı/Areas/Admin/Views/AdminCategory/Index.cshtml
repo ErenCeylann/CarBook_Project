@@ -1,0 +1,67 @@
+﻿@model List<ResultCategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Blog Kategori Alanı</h4>
+                        <p class="card-subtitle mb-4">
+                            Blog Kategorileri alanında bulunan bilgileri aşşağıdan düzenleyebilirsiniz.
+                        </p>
+
+                        <div class="table-responsive">
+                            @if (Model.Count > 0)
+                            {
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Kategori Ad</th>
+                                            <th>Güncelle</th>
+                                            <th>Sil</th>
+                                            <th>Kategoriye Ait Bloglar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@item.Name</td>
+                                                <td><a href="/Admin/AdminCategory/UpdateCategory/@item.CategoryId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><a href="/Admin/AdminCategory/RemoveCategory/@item.CategoryId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/AdminCategory/RemoveCategory/@item.CategoryId" class="btn btn-outline-primary">Kategoriye Ait Bloglar</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <h4 class="alert-heading">Kategori Bulunamadı!</h4>
+                                    <p>Şu anda Kategori bulunmamaktadır.Yeni Kategori eklemek için aşşağıdan özellik girişi butonuna tıklayınız.</p>
+                                </div>
+                            }
+                            <a href="/Admin/AdminCategory/CreateCategory" class="btn btn-outline-info">Yeni Kategori Girişi</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
